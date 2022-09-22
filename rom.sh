@@ -64,7 +64,7 @@ convert(){
     #Checks for validity of $num
     if let "num<1" || let "num>9999"; then
         echo "Hey, you need to enter a number between 1-9999!"
-        convert
+        convertw
     fi
     #Returns the lenght of the entered number, which is used for indexing
     numlen=${#num}

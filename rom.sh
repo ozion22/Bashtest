@@ -11,7 +11,7 @@ tiotal_array=(x xx xxx xL L Lx Lxx Lxxx xC)
 hundratal_array=(C CC CCC CD D DC DCC DCCC CM)
 tusental_array=(M MM MMM MV V VM VMM VMMM MX)
 #Allows the user to Convert another number
-contq(){
+contconversion(){
         echo "Would you like to convert another number? (y/n)"
         read yn
         if [ "$yn" = "y" ]; then
@@ -93,6 +93,6 @@ convert(){
             echo "$num is written as: $tnum$znum$ynum$xnum"
         ;;
     esac
-    contq
+    contconversion
 }
 convert

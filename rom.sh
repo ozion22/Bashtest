@@ -14,6 +14,7 @@ ental_array=(I II III Iv v vI vII vII Ix)
 tiotal_array=(x xx xxx xL L Lx Lxx Lxxx xC)
 hundratal_array=(C CC CCC CD D DC DCC DCCC CM)
 tusental_array=(M MM MMM MV V VM VMM VMMM MX)
+#Declares an associated array, allows for value entry into array lookup, returning the index number, used for roman to arabic conversion
 declare -A symbol_array
 symbol_array=([I]=0 [v]=1 [x]=2 [L]=3 [C]=4 [D]=5 [M]=6 [V]=7 [X]=8)
 
@@ -22,7 +23,7 @@ contq() {
     echo "Would you like to convert another number? (y/n)"
     read yn
     if [ "$yn" = "y" ]; then
-        convert_arabic_to_roman
+        choose_conversion
     else
         echo "Okay, see you next time ;)"
         for x in $(seq 1 5); do
@@ -100,13 +101,18 @@ convert_arabic_to_roman() {
     esac
     contq
 }
+#Read the name :P
 convert_roman_to_arabic() {
     echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-9999)"
     read num
     numlen=${#num}
+    #loop through all characters in the roman numeral
     while [ $numind -lt $numlen ]; do
+        #Not ideal, but bash does not appreciate using indexes in an array arg
         symbol_one=${num:numind:1}
         symbol_two=${num:numind+1:1}
+        #Checks if the number following is greater, if it is, subtract the value of the symbol from the total value
+        #Returns "bad array subscript", but works?
         if [ "${symbol_array[$symbol_two]}" -gt "${symbol_array[$symbol_one]}" ]; then
             case ${num:numind:1} in
             I)
@@ -174,8 +180,9 @@ convert_roman_to_arabic() {
     done
     echo "Total value is: $total_value"
 }
+#gives the user a choice on wheter or not to convert from arabic or roman numerals
 choose_conversion() {
-    echo "Hello, please choose conversion mode, input the numeric system you would like to convert from: Roman or Arabic (r/a)"
+    echo -e "\nPlease choose conversion mode, input the numeric system you would like to convert from: Roman or Arabic (r/a)"
     read ra
     if [ "$ra" = "r" ]; then
         convert_roman_to_arabic
@@ -183,4 +190,5 @@ choose_conversion() {
         convert_arabic_to_roman
     fi
 }
+#initiates the program
 choose_conversion

@@ -14,6 +14,8 @@ ental_array=(I II III Iv v vI vII vII Ix)
 tiotal_array=(x xx xxx xL L Lx Lxx Lxxx xC)
 hundratal_array=(C CC CCC CD D DC DCC DCCC CM)
 tusental_array=(M MM MMM MV V VM VMM VMMM MX)
+declare -A symbol_array
+symbol_array=([I]=0 [v]=1 [x]=2 [L]=3 [C]=4 [D]=5 [M]=6 [V]=7 [X]=8)
 
 #Allows the user to Convert another number
 contq() {
@@ -103,39 +105,82 @@ convert_roman_to_arabic() {
     read num
     numlen=${#num}
     while [ $numind -lt $numlen ]; do
-        case ${num:numind:1} in
-        I)
-            let "total_value=total_value+1"
-            ;;
-        v)
-            let "total_value=total_value+5"
-            ;;
-        x)
-            let "total_value=total_value+10"
-            ;;
-        L)
-            let "total_value=total_value+50"
-            ;;
-        C)
-            let "total_value=total_value+100"
-            ;;
-        D)
-            let "total_value=total_value+500"
-            ;;
-        M)
-            let "total_value=total_value+1000"
-            ;;
-        V)
-            let "total_value=total_value+5000"
-            ;;
-        X)
-            let "total_value=total_value+10000"
-            ;;
-        esac
+        symbol_one=${num:numind:1}
+        symbol_two=${num:numind+1:1}
+        if [ "${symbol_array[$symbol_two]}" -gt "${symbol_array[$symbol_one]}" ]; then
+            case ${num:numind:1} in
+            I)
+                let "total_value=total_value-1"
+                ;;
+            v)
+                let "total_value=total_value-5"
+                ;;
+            x)
+                let "total_value=total_value-10"
+                ;;
+            L)
+                let "total_value=total_value-50"
+                ;;
+            C)
+                let "total_value=total_value-100"
+                ;;
+            D)
+                let "total_value=total_value-500"
+                ;;
+            M)
+                let "total_value=total_value-1000"
+                ;;
+            V)
+                let "total_value=total_value-5000"
+                ;;
+            X)
+                let "total_value=total_value-10000"
+                ;;
+            esac
+        else
+            case ${num:numind:1} in
+            I)
+                let "total_value=total_value+1"
+                ;;
+            v)
+                let "total_value=total_value+5"
+                ;;
+            x)
+                let "total_value=total_value+10"
+                ;;
+            L)
+                let "total_value=total_value+50"
+                ;;
+            C)
+                let "total_value=total_value+100"
+                ;;
+            D)
+                let "total_value=total_value+500"
+                ;;
+            M)
+                let "total_value=total_value+1000"
+                ;;
+            V)
+                let "total_value=total_value+5000"
+                ;;
+            X)
+                let "total_value=total_value+10000"
+                ;;
+            esac
+        fi
         #Numind- Number index, used to index the $num variable
         let "numind=numind+1"
         continue
     done
     echo "Total value is: $total_value"
 }
-convert_roman_to_arabic
+choose_conversion() {
+    echo "Hello, please choose conversion mode, input the numeric system you would like to convert from: Roman or Arabic (r/a)"
+    read ra
+    if [ "$ra" = "r" ]; then
+        convert_roman_to_arabic
+    else
+        convert_arabic_to_roman
+    fi
+}
+choose_conversion

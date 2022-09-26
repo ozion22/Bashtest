@@ -2,6 +2,8 @@
 #!/bin/bash
 #Konvertera tal till romerska siffror
 fnum=""
+#Numind- Number index, used to index the user-inputed number or numeral
+numind=0
 echo "V=5000, v=5; X=10000, x=10"
 (clear)
 echo "-----Roman numeral converter-----"
@@ -15,7 +17,7 @@ tusental_array=(M MM MMM MV V VM VMM VMMM MX)
 
 #Allows the user to Convert another number
 contq() {
-    echo "Would you like to convert_arabic_to_roman another number? (y/n)"
+    echo "Would you like to convert another number? (y/n)"
     read yn
     if [ "$yn" = "y" ]; then
         convert_arabic_to_roman
@@ -96,26 +98,44 @@ convert_arabic_to_roman() {
     esac
     contq
 }
-convert_roman_to_arabic(){
+convert_roman_to_arabic() {
     echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-9999)"
     read num
     numlen=${#num}
-    for z in $num do
-        case $z in
+    while [ $numind -lt $numlen ]; do
+        case ${num:numind:1} in
         I)
-        let "total_value=total_value+1"
-        ;;
+            let "total_value=total_value+1"
+            ;;
         v)
-        let "total_value=total_value+5"
-        ;;
+            let "total_value=total_value+5"
+            ;;
         x)
-        let "total_value=total_value+10"
-        ;;
+            let "total_value=total_value+10"
+            ;;
         L)
-        let "total_value=total_value+50"
-        ;;
+            let "total_value=total_value+50"
+            ;;
+        C)
+            let "total_value=total_value+100"
+            ;;
+        D)
+            let "total_value=total_value+500"
+            ;;
+        M)
+            let "total_value=total_value+1000"
+            ;;
+        V)
+            let "total_value=total_value+5000"
+            ;;
+        X)
+            let "total_value=total_value+10000"
+            ;;
         esac
+        #Numind- Number index, used to index the $num variable
+        let "numind=numind+1"
+        continue
     done
     echo "Total value is: $total_value"
 }
-convert_arabic_to_roman
+convert_roman_to_arabic

@@ -15,10 +15,10 @@ tusental_array=(M MM MMM MV V VM VMM VMMM MX)
 
 #Allows the user to Convert another number
 contq() {
-    echo "Would you like to convert another number? (y/n)"
+    echo "Would you like to convert_arabic_to_roman another number? (y/n)"
     read yn
     if [ "$yn" = "y" ]; then
-        convert
+        convert_arabic_to_roman
     else
         echo "Okay, see you next time ;)"
         for x in $(seq 1 5); do
@@ -60,12 +60,12 @@ tusental() {
     fi
 }
 #Main function, runs the conversion functions and prints the result, also takes user input
-convert() {
+convert_arabic_to_roman() {
     echo -e "\nPlease enter an arabic numeral(1-9999): "
     read num
     if let "num<1" || let "num>9999"; then
         echo "Hey, you need to enter a number between 1-9999!"
-        convert
+        convert_arabic_to_roman
     fi
     #Returns the lenght of the entered number, which is used for indexing
     numlen=${#num}
@@ -96,4 +96,26 @@ convert() {
     esac
     contq
 }
-convert
+convert_roman_to_arabic(){
+    echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-9999)"
+    read num
+    numlen=${#num}
+    for z in $num do
+        case $z in
+        I)
+        let "total_value=total_value+1"
+        ;;
+        v)
+        let "total_value=total_value+5"
+        ;;
+        x)
+        let "total_value=total_value+10"
+        ;;
+        L)
+        let "total_value=total_value+50"
+        ;;
+        esac
+    done
+    echo "Total value is: $total_value"
+}
+convert_arabic_to_roman

@@ -103,10 +103,10 @@ convert_arabic_to_roman() {
 #Read the name :P
 convert_roman_to_arabic() {
     echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-48999)"
-    read -r num
+    read num
     numlen=${#num}
     #loop through all characters in the roman numeral
-    while [ $numind -lt "$numlen" ]; do
+    while [ $numind -lt $numlen ]; do
         #Not ideal, but bash does not appreciate using indexes in an array arg
         symbol_one=${num:numind:1}
         symbol_two=${num:numind+1:1}
@@ -115,61 +115,61 @@ convert_roman_to_arabic() {
         if [ "${symbol_array[$symbol_two]}" -gt "${symbol_array[$symbol_one]}" ]; then
             case ${num:numind:1} in
             I)
-                ((total_value=total_value-1))
+                let "total_value=total_value-1"
                 ;;
             v)
-                ((total_value=total_value-5))
+                let "total_value=total_value-5"
                 ;;
             x)
-                ((total_value=total_value-10))
+                let "total_value=total_value-10"
                 ;;
             L)
-                ((total_value=total_value-50))
+                let "total_value=total_value-50"
                 ;;
             C)
-                ((total_value=total_value-100))
+                let "total_value=total_value-100"
                 ;;
             D)
-                ((total_value=total_value-500))
+                let "total_value=total_value-500"
                 ;;
             M)
-                ((total_value=total_value-1000))
+                let "total_value=total_value-1000"
                 ;;
             V)
-                ((total_value=total_value-5000))
+                let "total_value=total_value-5000"
                 ;;
             X)
-                ((total_value=total_value-10000))
+                let "total_value=total_value-10000"
                 ;;
             esac
         else
             case ${num:numind:1} in
             I)
-                ((total_value=total_value+1))
+                let "total_value=total_value+1"
                 ;;
             v)
-                ((total_value=total_value+5))
+                let "total_value=total_value+5"
                 ;;
             x)
-                ((total_value=total_value+10))
+                let "total_value=total_value+10"
                 ;;
             L)
-                ((total_value=total_value+50))
+                let "total_value=total_value+50"
                 ;;
             C)
-                ((total_value=total_value+100))
+                let "total_value=total_value+100"
                 ;;
             D)
-                ((total_value=total_value+500))
+                let "total_value=total_value+500"
                 ;;
             M)
-                ((total_value=total_value+1000))
+                let "total_value=total_value+1000"
                 ;;
             V)
-                ((total_value=total_value+5000))
+                let "total_value=total_value+5000"
                 ;;
             X)
-                ((total_value=total_value+10000))
+                let "total_value=total_value+10000"
                 ;;
             esac
         fi
@@ -182,7 +182,7 @@ convert_roman_to_arabic() {
 #gives the user a choice on wheter or not to convert from arabic or roman numerals
 choose_conversion() {
     echo -e "\nPlease choose conversion mode, input the numeric system you would like to convert from: Roman or Arabic (r/a)"
-    read -r ra
+    read ra
     if [ "$ra" = "r" ]; then
         convert_roman_to_arabic
     else

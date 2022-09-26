@@ -1,7 +1,6 @@
 #!/bin/bash
 #!/bin/bash
 #Konvertera tal till romerska siffror
-fnum=""
 #Numind- Number index, used to index the user-inputed number or numeral
 numind=0
 echo "V=5000, v=5; X=10000, x=10"

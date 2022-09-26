@@ -8,7 +8,7 @@
             "type": "bashdb",
             "request": "launch",
             "name": "Bash-Debug (simplest configuration)",
-            "program": "workSpaceFolder/compiledFileName"
+            "program": "C:\Users\timsaa\OneDrive - International IT College of Sweden\Dokument\GitHub\Bashtest"
         }
     ]
 }

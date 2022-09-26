@@ -103,7 +103,7 @@ convert_arabic_to_roman() {
 }
 #Read the name :P
 convert_roman_to_arabic() {
-    echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-9999)"
+    echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-48999)"
     read num
     numlen=${#num}
     #loop through all characters in the roman numeral

@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 #Konvertera tal till romerska siffror
 #Numind- Number index, used to index the user-inputed number or numeral
 numind=0
@@ -63,7 +62,7 @@ tusental() {
         tnum=""
     fi
 }
-#Main function, runs the conversion functions and prints the result, also takes user input
+#A to R function, runs the conversion functions and prints the result, also takes user input
 convert_arabic_to_roman() {
     echo -e "\nPlease enter an arabic numeral(1-9999): "
     read -r num
@@ -78,17 +77,20 @@ convert_arabic_to_roman() {
     1)
         ental
         echo "$num is written as: $xnum"
+        echo "ERROR! (1)"
         ;;
     2)
         ental
         tiotal
         echo "$num is written as: $ynum$xnum"
+        echo "ERROR! (2)"
         ;;
     3)
         ental
         tiotal
         hundratal
         echo "$num is written as: $znum$ynum$xnum"
+        echo "ERROR! (3)"
         ;;
     4)
         ental
@@ -96,11 +98,11 @@ convert_arabic_to_roman() {
         hundratal
         tusental
         echo "$num is written as: $tnum$znum$ynum$xnum"
+        echo "ERROR! (4)"
         ;;
     esac
     contq
 }
-#Read the name :P
 convert_roman_to_arabic() {
     echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-48999)"
     read -r num

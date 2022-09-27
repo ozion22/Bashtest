@@ -115,61 +115,61 @@ convert_roman_to_arabic() {
         if [ "${symbol_array[$symbol_two]}" -gt "${symbol_array[$symbol_one]}" ]; then
             case ${num:numind:1} in
             I)
-                ((total_value=total_value-1))
+                ((total_value-=1))
                 ;;
             v)
-                ((total_value=total_value-5))
+                ((total_value-=5))
                 ;;
             x)
-                ((total_value=total_value-10))
+                ((total_value-=10))
                 ;;
             L)
-                ((total_value=total_value-50))
+                ((total_value-=50))
                 ;;
             C)
-                ((total_value=total_value-100))
+                ((total_value-=100))
                 ;;
             D)
-                ((total_value=total_value-500))
+                ((total_value-=500))
                 ;;
             M)
-                ((total_value=total_value-1000))
+                ((total_value-=1000))
                 ;;
             V)
-                ((total_value=total_value-5000))
+                ((total_value-=5000))
                 ;;
             X)
-                ((total_value=total_value-10000))
+                ((total_value-=10000))
                 ;;
             esac
         else
             case ${num:numind:1} in
             I)
-                ((total_value=total_value+1))
+                ((total_value+=1))
                 ;;
             v)
-                ((total_value=total_value+5))
+                ((total_value+=5))
                 ;;
             x)
-                ((total_value=total_value+10))
+                ((total_value+=10))
                 ;;
             L)
-                ((total_value=total_value+50))
+                ((total_value+=50))
                 ;;
             C)
-                ((total_value=total_value+100))
+                ((total_value+=100))
                 ;;
             D)
-                ((total_value=total_value+500))
+                ((total_value+=500))
                 ;;
             M)
-                ((total_value=total_value+1000))
+                ((total_value+=1000))
                 ;;
             V)
-                ((total_value=total_value+5000))
+                ((total_value+=5000))
                 ;;
             X)
-                ((total_value=total_value+10000))
+                ((total_value+=10000))
                 ;;
             esac
         fi

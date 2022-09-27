@@ -20,7 +20,7 @@ symbol_array=([I]=0 [v]=1 [x]=2 [L]=3 [C]=4 [D]=5 [M]=6 [V]=7 [X]=8)
 #Allows the user to Convert another number
 contq() {
     echo "Would you like to convert another number? (y/n)"
-    read yn
+    read -r yn
     if [ "$yn" = "y" ]; then
         choose_conversion
     else
@@ -35,39 +35,39 @@ contq() {
 }
 #aind- Array index, takes the number from $num and uses it to search the arrays, assigns resulting numeral to respective variable
 ental() {
-    let "aind=${num:numlen-1:1}-1"
+    ((aind=${num:numlen-1:1}-1))
     xnum=${ental_array[aind]}
     #Checks if the Array-index is negative, which would return 9/90/900/9000, instead of an empty string
-    if let "aind<0"; then
+    if ((aind<0)); then
         xnum=""
     fi
 }
 tiotal() {
-    let "aind=${num:numlen-2:1}-1"
+    ((aind=${num:numlen-2:1}-1))
     ynum=${tiotal_array[aind]}
-    if let "aind<0"; then
+    if ((aind<0)); then
         ynum=""
     fi
 }
 hundratal() {
-    let "aind=${num:numlen-3:1}-1"
+    ((aind=${num:numlen-3:1}-1))
     znum=${hundratal_array[aind]}
-    if let "aind<0"; then
+    if ((aind<0)); then
         znum=""
     fi
 }
 tusental() {
-    let "aind=${num:numlen-4:1}-1"
+    ((aind=${num:numlen-4:1}-1))
     tnum=${tusental_array[aind]}
-    if let "aind<0"; then
+    if ((aind<0)); then
         tnum=""
     fi
 }
 #Main function, runs the conversion functions and prints the result, also takes user input
 convert_arabic_to_roman() {
     echo -e "\nPlease enter an arabic numeral(1-9999): "
-    read num
-    if let "num<1" || let "num>9999"; then
+    read -r num
+    if ((num<1)) || ((num>9999)); then
         echo "Hey, you need to enter a number between 1-9999!"
         convert_arabic_to_roman
     fi
@@ -174,7 +174,7 @@ convert_roman_to_arabic() {
             esac
         fi
         #Numind- Number index, used to index the $num variable
-        let "numind=numind+1"
+        ((numind=numind+1))
         continue
     done
     echo "Total value is: $total_value"

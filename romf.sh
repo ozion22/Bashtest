@@ -20,7 +20,7 @@ symbol_array=([I]=0 [v]=1 [x]=2 [L]=3 [C]=4 [D]=5 [M]=6 [V]=7 [X]=8)
 #Allows the user to Convert another number
 contq() {
     echo "Would you like to convert another number? (y/n)"
-    read yn
+    read -r yn
     if [ "$yn" = "y" ]; then
         choose_conversion
     else
@@ -35,39 +35,39 @@ contq() {
 }
 #aind- Array index, takes the number from $num and uses it to search the arrays, assigns resulting numeral to respective variable
 ental() {
-    let "aind=${num:numlen-1:1}-1"
+    ((aind=${num:numlen-1:1}-1))
     xnum=${ental_array[aind]}
     #Checks if the Array-index is negative, which would return 9/90/900/9000, instead of an empty string
-    if let "aind<0"; then
+    if ((aind<0)); then
         xnum=""
     fi
 }
 tiotal() {
-    let "aind=${num:numlen-2:1}-1"
+    ((aind=${num:numlen-2:1}-1))
     ynum=${tiotal_array[aind]}
-    if let "aind<0"; then
+    if ((aind<0)); then
         ynum=""
     fi
 }
 hundratal() {
-    let "aind=${num:numlen-3:1}-1"
+    ((aind=${num:numlen-3:1}-1))
     znum=${hundratal_array[aind]}
-    if let "aind<0"; then
+    if ((aind<0)); then
         znum=""
     fi
 }
 tusental() {
-    let "aind=${num:numlen-4:1}-1"
+    ((aind=${num:numlen-4:1}-1))
     tnum=${tusental_array[aind]}
-    if let "aind<0"; then
+    if ((aind<0)); then
         tnum=""
     fi
 }
 #Main function, runs the conversion functions and prints the result, also takes user input
 convert_arabic_to_roman() {
     echo -e "\nPlease enter an arabic numeral(1-9999): "
-    read num
-    if let "num<1" || let "num>9999"; then
+    read -r num
+    if ((num<1)) || ((num>9999)); then
         echo "Hey, you need to enter a number between 1-9999!"
         convert_arabic_to_roman
     fi
@@ -103,10 +103,10 @@ convert_arabic_to_roman() {
 #Read the name :P
 convert_roman_to_arabic() {
     echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-48999)"
-    read num
+    read -r num
     numlen=${#num}
     #loop through all characters in the roman numeral
-    while [ $numind -lt $numlen ]; do
+    while [ $numind -lt "$numlen" ]; do
         #Not ideal, but bash does not appreciate using indexes in an array arg
         symbol_one=${num:numind:1}
         symbol_two=${num:numind+1:1}
@@ -115,66 +115,66 @@ convert_roman_to_arabic() {
         if [ "${symbol_array[$symbol_two]}" -gt "${symbol_array[$symbol_one]}" ]; then
             case ${num:numind:1} in
             I)
-                let "total_value=total_value-1"
+                ((total_value=total_value-1))
                 ;;
             v)
-                let "total_value=total_value-5"
+                ((total_value=total_value-5))
                 ;;
             x)
-                let "total_value=total_value-10"
+                ((total_value=total_value-10))
                 ;;
             L)
-                let "total_value=total_value-50"
+                ((total_value=total_value-50))
                 ;;
             C)
-                let "total_value=total_value-100"
+                ((total_value=total_value-100))
                 ;;
             D)
-                let "total_value=total_value-500"
+                ((total_value=total_value-500))
                 ;;
             M)
-                let "total_value=total_value-1000"
+                ((total_value=total_value-1000))
                 ;;
             V)
-                let "total_value=total_value-5000"
+                ((total_value=total_value-5000))
                 ;;
             X)
-                let "total_value=total_value-10000"
+                ((total_value=total_value-10000))
                 ;;
             esac
         else
             case ${num:numind:1} in
             I)
-                let "total_value=total_value+1"
+                ((total_value=total_value+1))
                 ;;
             v)
-                let "total_value=total_value+5"
+                ((total_value=total_value+5))
                 ;;
             x)
-                let "total_value=total_value+10"
+                ((total_value=total_value+10))
                 ;;
             L)
-                let "total_value=total_value+50"
+                ((total_value=total_value+50))
                 ;;
             C)
-                let "total_value=total_value+100"
+                ((total_value=total_value+100))
                 ;;
             D)
-                let "total_value=total_value+500"
+                ((total_value=total_value+500))
                 ;;
             M)
-                let "total_value=total_value+1000"
+                ((total_value=total_value+1000))
                 ;;
             V)
-                let "total_value=total_value+5000"
+                ((total_value=total_value+5000))
                 ;;
             X)
-                let "total_value=total_value+10000"
+                ((total_value=total_value+10000))
                 ;;
             esac
         fi
         #Numind- Number index, used to index the $num variable
-        let "numind=numind+1"
+        ((numind=numind+1))
         continue
     done
     echo "Total value is: $total_value"
@@ -182,7 +182,7 @@ convert_roman_to_arabic() {
 #gives the user a choice on wheter or not to convert from arabic or roman numerals
 choose_conversion() {
     echo -e "\nPlease choose conversion mode, input the numeric system you would like to convert from: Roman or Arabic (r/a)"
-    read ra
+    read -r ra
     if [ "$ra" = "r" ]; then
         convert_roman_to_arabic
     else

@@ -77,20 +77,17 @@ convert_arabic_to_roman() {
     1)
         ental
         echo "$num is written as: $xnum"
-        echo "ERROR! (1)"
         ;;
     2)
         ental
         tiotal
         echo "$num is written as: $ynum$xnum"
-        echo "ERROR! (2)"
         ;;
     3)
         ental
         tiotal
         hundratal
         echo "$num is written as: $znum$ynum$xnum"
-        echo "ERROR! (3)"
         ;;
     4)
         ental
@@ -98,7 +95,6 @@ convert_arabic_to_roman() {
         hundratal
         tusental
         echo "$num is written as: $tnum$znum$ynum$xnum"
-        echo "ERROR! (4)"
         ;;
     esac
     contq
@@ -180,6 +176,7 @@ convert_roman_to_arabic() {
         continue
     done
     echo "Total value is: $total_value"
+    contq
 }
 #gives the user a choice on wheter or not to convert from arabic or roman numerals
 choose_conversion() {

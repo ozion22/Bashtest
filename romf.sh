@@ -102,6 +102,7 @@ convert_arabic_to_roman() {
 convert_roman_to_arabic() {
     echo -e "\nPlease enter a roman numeral to convert (!CASE-SENSITVE!) (1-48999)"
     read -r num
+    numind=0
     numlen=${#num}
     #loop through all characters in the roman numeral
     while [ $numind -lt "$numlen" ]; do
@@ -110,7 +111,18 @@ convert_roman_to_arabic() {
         symbol_two=${num:numind+1:1}
         #Checks if the number following is greater, if it is, subtract the value of the symbol from the total value
         #Returns "bad array subscript", but works?
-        if [ "${symbol_array[$symbol_two]}" -gt "${symbol_array[$symbol_one]}" ]; then
+        if [ "$symbol_two" = "" ]; then
+            symbol_two=z
+        fi
+        symbol_two_index=${symbol_array[$symbol_two]}
+        symbol_one_index=${symbol_array[$symbol_one]}
+        if [ "${symbol_array[$symbol_one]}" = "" ]; then
+            symbol_one_index=0
+        fi
+        if [ "${symbol_array[$symbol_two]}" = "" ]; then
+            symbol_two_index=0
+        fi
+        if [ "$symbol_two_index" -gt "$symbol_one_index" ]; then
             case ${num:numind:1} in
             I)
                 ((total_value-=1))
@@ -172,8 +184,7 @@ convert_roman_to_arabic() {
             esac
         fi
         #Numind- Number index, used to index the $num variable
-        ((numind=numind+1))
-        continue
+        numind+=1
     done
     echo "Total value is: $total_value"
     contq

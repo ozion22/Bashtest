@@ -95,7 +95,6 @@ then
     echo "Saldo: $saldo"
     echo -e "${YELLOW}Congrats bro${NC}"
     echo
-else
     ((saldo=saldo-bet))
     echo "Guess: $guess"
     echo "Dice: $dice"

@@ -1,5 +1,6 @@
 #!/bin/bash
 #Konvertera tal till romerska siffror
+
 #Numind- Number index, used to index the user-inputed number or numeral
 numind=0
 echo "V=5000, v=5; X=10000, x=10"
@@ -114,6 +115,7 @@ convert_roman_to_arabic() {
         if [ "$symbol_two" = "" ]; then
             symbol_two=z
         fi
+        #Mainly "stick-it-on-and-maybe-it'll work, prevents negative indicies"
         symbol_two_index=${symbol_array[$symbol_two]}
         symbol_one_index=${symbol_array[$symbol_one]}
         if [ "${symbol_array[$symbol_one]}" = "" ]; then
@@ -122,6 +124,8 @@ convert_roman_to_arabic() {
         if [ "${symbol_array[$symbol_two]}" = "" ]; then
             symbol_two_index=0
         fi
+        #End quickfix
+        #Determines if a symbol has a greater or smaller value than the one after, subtracts/adds accordingly...
         if [ "$symbol_two_index" -gt "$symbol_one_index" ]; then
             case ${num:numind:1} in
             I)

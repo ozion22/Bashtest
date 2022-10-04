@@ -8,6 +8,10 @@ chkh() {
 }
 chkh
 #^^Checks highscore
+help() {
+        echo "Enter 'hl' in the bet feild to enter higher or lower"
+        echo "Your starting saldo is shown before and after ever game "
+}
 hol() {
         (clear)
         echo -e "\n--------   Higher or Lower   --------\n"
@@ -86,12 +90,12 @@ diceroll() {
                 echo "Goodbye"
                 exit
         fi
-        if ((0>=guess)); then
+        if ((1>guess)); then
                 echo "Please guess a number that is posible ;)"
                 echo "Enter Guess(1-6)"
                 read -r guess
         else
-                if ((7<=guess)); then
+                if ((6<guess)); then
                         echo "Please guess a number that is possible ;)"
                         echo "Enter Guess(1-6)"
                         read -r guess

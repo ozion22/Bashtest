@@ -63,7 +63,7 @@ while true; do
     let "Chances=score"
     echo "You have $Chances chances left"
     oldname=$(cat highscore.txt)
-    if (($Chances>$oldname)); then
+    if (($Chances > $oldname)); then
         echo "$Chances" >highscore.txt
     else
         echo "$oldname" >highscore.txt

@@ -25,7 +25,7 @@ contq() {
         choose_conversion
     else
         echo "Okay, see you next time ;)"
-        for x in $(seq 1 5); do
+        for _ in $(seq 1 5); do
             sleep 0.5
             echo "."
         done
